@@ -10,7 +10,10 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
@@ -31,7 +34,7 @@ public class ExcelController {
   )
   public MinNumberResponse getMinimumNumber(@Valid @RequestBody MinNumberRequest request) {
     HttpServletRequest requestInfo = getRequestAttributes().getRequest();
-    log.debug("Запроса: {}, URL: {}", requestInfo.getMethod(), requestInfo.getPathInfo());
+    log.info("Запроса: {}, URL: {}", requestInfo.getMethod(), requestInfo.getServletPath());
 
     Integer minNumber = service.findMinNumber(request.getFilePath(), request.getN());
     return new MinNumberResponse(minNumber);
