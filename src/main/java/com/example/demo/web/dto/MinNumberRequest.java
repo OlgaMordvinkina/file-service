@@ -24,6 +24,5 @@ public class MinNumberRequest {
     example = "3"
   )
   @NotNull(message = "Поле обязательно для заполнения")
-  @Min(value = 1, message = "Значение должно быть больше 0")
   Integer n;
 }
